@@ -1,0 +1,162 @@
+{% load static %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html>
+  <head>
+      <title> Setting and Privacy </title>
+      <meta charset = "utf8">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <script src="{% static "/js/settings/pw_update.js" %}"></script>
+      <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" >
+      <link rel="stylesheet" herf="{% static "css/settings.css" %}" />
+
+      <!--link rel="stylesheet" href="{% static 'css/signup.css' %}" -->
+      
+
+  </head>
+
+
+  <body >
+      <div class="head-bar">
+          {% include 'navbar.html' %}
+      </div>
+      <div id="user_info" class="card-body col-6 offset-3" >
+        <div class="modal-content ">
+          <div class="card-body" >
+              <div class="container"> 
+                  <div class="row all-wrap">
+                          <form action="{% url 'settings' %}" method='post' enctype="multipart/form-data">
+                          <h2 class="card-title text-center"><b>Setting and Privacy</b><h2>
+                          {% csrf_token %}
+                          
+                          <font size = "4">
+                        <!-- Avatar here-->
+                          <div class="two">
+                            <div class="col-lg-4">
+                                <div style='float: center; margin-right: 5px; text-align: center;' >
+                                  {% if edit.avatar_image %}
+                                    <img id="ava" src="{{edit.avatar_image.url}}" alt="Avatar">
+                                  {% endif %}
+                                </div> 
+                                {{ form.avatar_image }}
+                            </div>
+                          </div>
+
+                          <div>
+                            <label for="first_name" class="col-xl-3 col-form-label">First name: </label>
+                            <input id="first_name" name="first_name" type="text" placeholder="First name" value="{{edit.first_name}}" disabled>
+                            <span class="edit" onclick="enableEdit('first_name', this)">
+                                <a href="javascript:void(0);" class="text-warning"><i class="fa fa-pencil"></i> Edit</a>
+                            </span>
+                          </div>
+                            
+                            
+                          <div>
+                            <!-- form id="user_data" action="{% url 'settings' %}" method ="post"-->
+                            <label  for="last_name" class="col-xl-3 col-form-label">Last Name: </label>
+                            <input id="last_name" name="last_name" type="text" placeholder="Last name" value="{{edit.last_name}}" disabled>
+                            <span class="edit" onclick="enableEdit('last_name', this)">
+                              <a href="javascript:void(0);" class="text-warning"><i class="fa fa-pencil"></i> Edit</a>
+                            </span>
+                          </div>
+
+                          <div>
+                            <label for="user" class="col-xl-3 col-form-label">Username: </label>
+                            <input id="user" name="user" type="text" placeholder="user" value="{{edit.username}}" disabled>
+                            <span class="edit" onclick="enableEdit('user', this)">
+                              <a href="javascript:void(0);" class="text-warning"><i class="fa fa-pencil"></i> Edit</a>
+                            </span>
+                          </div>
+
+                          <div>
+                            <label for="email" class="col-xl-3 col-form-label">E-mail: </label>
+                            <input id="email" name="email" type="text" placeholder="email" value="{{edit.email}}" disabled>
+                            <span class="edit" onclick="enableEdit('email', this)">
+                              <a href="javascript:void(0);" class="text-warning"><i class="fa fa-pencil"></i> Edit</a>
+                            </span>
+                          </div>
+
+                          <div>
+                            <label for="age" class="col-xl-3 col-form-label"> Age: </label>
+                            <input for="age" id="age" name="age" type="number" placeholder="00" value="{{edit.age}}" disabled>
+                            <span class="edit" onclick="enableEdit('age', this)">
+                              <a href="javascript:void(0);" class="text-warning"><i class="fa fa-pencil"></i> Edit</a>
+                            </span>
+                          </div>
+
+                          <div>
+                            <label for="description" class="col-xl-3 col-form-label">Description: </label>
+                            <textarea id="description" name="description" placeholder="description" rows="3" cols="40" disabled>{{ edit.description }}</textarea>
+                            <span class="edit" onclick="enableEdit('description', this)">
+                              <a href="javascript:void(0);" class="text-warning"><i class="fa fa-pencil"></i> Edit</a>
+                            </span>
+                          </div>
+
+                          <div>
+                            <label for="password" class="col-xl-3 col-form-label">Password: </label>
+                            <!-- <input id="password" name="password" type="text" placeholder="Your password" disabled> -->
+                            <span class="edit" onclick="enableEdit('name', this)">
+                                <a href="{% url 'password' %}" class="text-warning"><i class="fa fa-pencil"></i> Edit</a>
+                            </span>
+                          </div>
+                          <br/>
+
+                          <!-- input name="password" type="password"  value="{{edit.password}}" placeholder="password">{{edit.password}}</br>
+                          <input name="new_password" type="password"  value="{{edit.new_password}}"  placeholder="New password">{{edit.new_password}}</br>
+                          <input name="confirm_password" type="password"  value="{{edit.confrim_password}}" placeholder="Confirm new password">{{edit.confirm_password}}</br>
+                          <input type="submit" value="Update"-->
+                          
+                          <div class="row">
+                                <button type="cancel" herf="{% url 'index' %}" value='cancel' class=" col-2 offset-2 btn btn-mdb-color cancel-btn " name='cancel'>Cancel</button>
+                                <button type="submit" value='save_changes' class=" offset-3 btn btn-success save-changes-btn" name='save_changes'>Save Changes</button>
+                          </div>
+
+                            
+                          </font>
+                      
+                          </div> </br>
+          
+                      </form>
+                      <!--a data-toggle="modal" href="{% url 'password'%}" class="btn btn-primary">password setting</a -->
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div> 
+      <script>
+        $(document).ready(function() {
+        var box;
+        {% if event_tags %}
+            {% for event_tag in event_tags %}
+                box = document.querySelector(`div.tags_box[value='{{event_tag.id}}']`);
+                // box.className = box.className.replace("not_choosen", "choosen");
+                box.click();
+            {% endfor %}
+        {% endif %}
+
+        
+        });
+        // set everything disabled
+        function enableEdit(id, self) {
+            let ele = document.getElementById(id);
+            ele.disabled = false;
+            self.hidden = "true";
+        }
+
+
+    </script>
+
+  </body>
+
+</html>
+
+
+
+

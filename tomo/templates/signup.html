@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+{% load widget_tweaks %}
+{% load static %}
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{% static 'css/signup.css' %}" />
+  <title>SignUp</title>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  <head>
+    <!------ Include the above in your HEAD tag ---------->
+
+  <body class='background' style="background-color: white; z-index: -1;">
+    <div class="head-bar">
+      {% include 'navbar.html' %}
+    </div> <!-- head-bar -->
+    
+    <div class="container-fluid">
+      <div class="row">
+        <canvas class="col-12" id="canvas" style="z-index: 1; position: absolute; top: 0px; right: 0px; height:inherit;"></canvas>
+        <div class="card-body col-4 offset-1" style="z-index: 2;">
+          <div class="myform form " style ="background-color: #2a1a5e">
+            <div class="logo mb-3">
+              <div class="col-md-12 text-center">
+                <h1 class="sign" style="color: white;">Sign Up</h1>
+              </div>
+            </div>
+
+            <form id="user_data" action="{% url 'signup' %}" name="registration" , method='post'>
+              {% csrf_token %}
+              {% for hidden_field in form.hidden_fields %}
+              {{ hidden_field }}
+              {% endfor %}
+
+              {% if form.non_field_errors %}
+              <div class="alert alert-danger" role="alert">
+                {% for error in form.non_field_errors %}
+                {{ error }}
+                {% endfor %}
+              </div>
+              {% endif %}
+
+              {% for field in form.visible_fields %}
+              <div class="form-group">
+                {{ field.label_tag }}
+
+                {% if form.is_bound %}
+                {% if field.errors %}
+                {% render_field field class="form-control is-invalid" %}
+                {% for error in field.errors %}
+                <div class="invalid-feedback">
+                  {{ error }}
+                </div>
+                {% endfor %}
+                {% else %}
+                {% render_field field class="form-control is-valid" %}
+                {% endif %}
+                {% else %}
+                {% render_field field class="form-control" %}
+                {% endif %}
+                <!-- {% if field.help_text %}
+                          <small class="form-text text-muted">{{ field.help_text }}</small>
+                        {% endif %} -->
+                {% endfor %}
+              </div>
+              <div class="col-md-6 offset-3 text-center mb-3">
+                <button type="submit" class=" btn btn-block mybtn tx-tfm"><span class="mybtn-text">Sign Up</span></button>
+              </div>
+              <div class="col-md-12 ">
+                <div class="form-group">
+                  <p class="text-center"><a class="already-account" href="{% url 'login' %}">Already have an account?</a></p>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div> <!-- card-body -->
+      </div> <!-- row -->
+     
+    </div> <!-- container -->
+<body>
+  <script type="text/javascript" src={% static 'js/signup.js' %}></script>

@@ -1,0 +1,27 @@
+<div class="newly-loaded">
+    {% if not state %}
+        <!-- <div class="column1"> -->
+            {% for key, value in date_list.items %}
+            <div class="rap-god">
+                <div class="section-text" style="text-transform: uppercase;">{{ key }}</div>
+                {% for event in value %}
+                <div class="section">
+                    <div class="card mb-3" onclick="window.open('{% url 'detail' event.id%}');" style="cursor: pointer;">
+                        <div class="card-header">
+                            <div class="nono">
+                                <div>{{event.hosted_at|date:'g:i A'}}</div>
+                            </div>
+                            <div class="nono1">
+                                <small>Hosted by: {{event.host}}</small><br>
+                                <a href="{% url 'detail' event.id %}">{{ event.name }}</a><br>
+                                <small>{{event.attendees.all.count}} people will go</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        <!-- </div> -->
+    {% endif %}
+</div>

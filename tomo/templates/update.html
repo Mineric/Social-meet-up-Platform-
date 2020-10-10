@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Update {{event.name}}</title>
+    <meta charset="utf-8">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="{% static 'js/addtags.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/addtags.css' %}">
+    <link rel="stylesheet" href="{% static 'css/update.css' %}">
+</head>
+
+<body>
+    <div class="head-bar">
+        {% include 'navbar.html' %}
+    </div>
+    <!-- <form action="{% url 'signup' %}">
+            <input type="submit" value="Signup" />
+        </form> -->
+    <div class="row">
+        <div class="roundbox col-xl-10 offset-1">
+            <div class="row">
+                <h1 class="col-xl-2">{{event.name}}</h1>
+            </div>
+            <form action="{% url 'update' event.id %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group row">
+                    <label for="name" class="col-xl-2 col-form-label">Event name:</label>
+                    <div class="col-xl-10">
+                        <input id="name" name="name" type="text" placeholder="Event's name" value="{{event.name}}" disabled>
+                        <span class="edit" onclick="enableEdit('name', this)">
+                            <a href="javascript:void(0);"><i class="fa fa-pencil"></i> Edit</a>
+                        </span>
+                    </div>
+                </div> <!-- form-group row -->
+
+                <div class="form-group row">
+                    <label class="col-xl-2 col-form-label" for="detail">Description:</label>
+                    <div class="col-xl-10">
+                        <textarea id="detail" name="detail" placeholder="Event's detail" rows="8" cols="100" disabled>{{ event.detail }}</textarea><br>
+                        <span class="edit" onclick="enableEdit('detail', this)">
+                            <a href="javascript:void(0);"><i class="fa fa-pencil"></i> Edit</a>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-xl-2 col-form-label">Cover image:</label>
+                    <div class="col-xl-10">
+                        {{ form.cover_image }}
+                        <!-- <span class="edit" onclick="enableEdit('hosted_at', this)">
+                            <a href="javascript:void(0);"><i class="fa fa-pencil"></i> Edit</a>
+                        </span> -->
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-xl-2 col-form-label" for"hosted_at">Host time:</label>
+                    <div class="col-xl-10">
+                        <input id="hosted_at" name="hosted_at" type="datetime-local" value="{{ event.hosted_at | date:'Y-m-d\TH:i' }}" disabled>
+                        <span class="edit" onclick="enableEdit('hosted_at', this)">
+                            <a href="javascript:void(0);"><i class="fa fa-pencil"></i> Edit</a>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-xl-2 col-form-label" for="address">Address:</label>
+                    <div class="col-xl-10">
+                        <input id="address" type="text" name="address" placeholder="Address" value="{{ event.address }}" disabled>
+                        <span class="edit" onclick="enableEdit('address', this)">
+                            <a href="javascript:void(0);"><i class="fa fa-pencil"></i> Edit</a>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-xl-2 col-form-label" >Tags:</div>
+                    <div class="col-xl-10">
+                        {% if tags %}
+                            {% for tag in tags %}
+                                <div class="tags_box not_choosen btn" value="{{ tag.id }}">{{ tag.name }}</div>
+                            {% endfor %}
+                        {% endif %}
+                        {% if tags %}
+                            {% for tag in tags%}
+                                <input type="checkbox" id="tags_{{ tag.id}}" name="tags" value="{{ tag.id }}">
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <input class="text-center submit-btn" type=submit value="Update">
+                </div>
+            </form>
+        </div> <!-- roundbox -->
+    </div> <!-- row -->
+    <!-- <img src="{{ event.cover_image.url }}"> -->
+    <script>
+        $(document).ready(function() {
+        var box;
+        {% if event_tags %}
+            {% for event_tag in event_tags %}
+                box = document.querySelector(`div.tags_box[value='{{event_tag.id}}']`);
+                // box.className = box.className.replace("not_choosen", "choosen");
+                box.click();
+            {% endfor %}
+        {% endif %}
+
+        
+        });
+        // set everything disabled
+        function enableEdit(id, self) {
+            let ele = document.getElementById(id);
+            ele.disabled = false;
+            self.hidden = "true";
+        }
+
+
+    </script>
+
+</body>
+
+</html>

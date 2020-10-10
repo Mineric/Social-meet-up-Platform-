@@ -1,0 +1,121 @@
+
+
+//
+body{
+  margin: 0;
+  overflow: hidden;
+  background-color: black;
+  color: white;
+  padding-top:2.2rem;
+  padding-bottom:4.2rem;
+  background:rgba(0, 0, 0, 0.76);
+}
+
+  a{
+   text-decoration:none !important;
+   }
+   h1,h2,h3, label{
+   /* font-family: 'Kaushan Script', cursive; */
+    font-weight: 500;
+    color: white;
+   }
+    .myform{
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 1rem;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  background-color:whitesmoke; !change colour
+  background-clip: padding-box;
+  border: 1px solid rgba(0,0,0,.2);
+  border-radius: 1.1rem;
+  outline: 0;
+  max-width: 500px;
+   }
+
+   .tx-tfm{
+   text-transform:uppercase;
+   }
+   .mybtn{
+   border-radius:50px;
+   background: white;
+   color: #2a1a5e;
+   }
+   .mybtn:hover {
+     background: #94BAE7;
+     color: white;
+   }
+
+   .mybtn-text {
+      font-weight: 500;
+   }
+   
+   .already-account {
+     color: white;
+   }
+  
+   .login-or {
+   position: relative;
+   color: #aaa;
+   margin-top: 10px;
+   margin-bottom: 10px;
+   padding-top: 10px;
+   padding-bottom: 10px;
+   }
+   .span-or {
+   display: block;
+   position: absolute;
+   left: 50%;
+   top: -2px;
+   margin-left: -25px;
+   background-color: #fff;
+   width: 50px;
+   text-align: center;
+   }
+   .hr-or {
+   height: 1px;
+   margin-top: 0px !important;
+   margin-bottom: 0px !important;
+   }
+   .google {
+   color:#666;
+   width:100%;
+   height:40px;
+   text-align:center;
+   outline:none;
+   border: 1px solid lightgrey;
+   }
+    form .error {
+   color: #ff0000;
+   }
+   #second{display:none;}
+   
+   
+  }
+
+#form-container {
+margin-left: 28%;
+width: 600px;
+height: 300px;
+background-color: none;
+border: 1px #ff5722 solid;
+}
+
+
+
+#title {
+margin-left: 28%;
+width: 602px;
+height: 30px;
+background-color: #ff5722;
+} 
+
+
+.background {
+
+background-image: url(static/images/Dang.jpg);
+background-color: #666;
+}

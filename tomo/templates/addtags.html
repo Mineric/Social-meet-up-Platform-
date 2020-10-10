@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Choosee tags</title>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script type="text/javascript" src="{% static 'js/addtags.js' %}"></script>
+        <link rel='stylesheet' href="{% static 'css/addtags.css' %}">
+        
+    </head>
+    <body>
+        <div class="head-bar">
+            {% include 'navbar.html' %}
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-8 offset-2">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fa fa-tags"> </i> Interest
+                        </div>
+                        <div class="card-body">
+                            <!-- {% if tags %}
+                                {% for tag in tags %}
+                                    <div class="tags_box choosen btn" value="{{ tag.id }}">{{ tag.name }}</div> 
+                                {% endfor %}
+                            {% endif %} -->
+                            <h4>Choose your interest among the following</h4>
+                            {% if tags %}
+                                {% for tag in tags %}
+                                    <div class="tags_box not_choosen btn" value="{{ tag.id }}">{{ tag.name }}</div> 
+                                {% endfor %}
+                            {% endif %}
+                            <!-- real check-in box -->
+                            <form action="" method="POST">
+                                {% csrf_token %}
+                                {% if tags %}
+                                    {% for tag in tags%}
+                                        <input type="checkbox" id="tags_{{ tag.id}}" name="tags" value="{{ tag.id }}">
+                                    {% endfor %}
+                                {% endif %}
+                                <div class="text-center"> 
+                                    <button class="btn submit-btn text-center" type="submit">Submit</button>
+                                </div>
+                            </form>
+                        </div> <!-- card-body -->
+                    </div> <!-- Card -->
+                </div> <!-- col -->
+            </div> <!-- row -->
+        </div> <!-- container -->
+    </body>
+</html>

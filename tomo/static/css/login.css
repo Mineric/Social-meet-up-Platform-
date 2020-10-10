@@ -1,0 +1,24 @@
+#background {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: -999;
+    /* background-repeat: no-repeat;
+    background-size: auto; */
+}
+
+.stretch {
+    width: 100%;
+    height: 100%;
+}
+
+input:focus, .form-control {
+    outline-width: 0px;
+}
+
+.btn-wrap {
+    margin-top: 10px;
+    margin-bottom: 0px;
+}

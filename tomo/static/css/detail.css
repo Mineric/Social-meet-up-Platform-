@@ -1,0 +1,284 @@
+.top {
+    background-color: white;
+    padding-left: 80px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: black ;
+    margin-bottom: 40px;
+}
+
+.sbox{
+    width: 100px;
+    display: inline;
+    background-color: #ffcc33;
+    margin: auto;
+}
+.text_two {
+    color: white;
+    font-size: 1.1em;
+}
+.box {
+    /* width: auto;
+    margin: auto; */
+    border-radius: 25px;
+    display: block;
+    margin: 40px 0px 0px 60px;
+    /* background-color: #ffcc33; */
+    
+}
+.one {
+    border-radius: 25px;
+    /* width: 62vw; */
+    /* float: left; */
+    height: auto;
+    min-height: 50vh;
+    /* background-color: white; */
+    padding: 1vh 1vw;
+    padding-right: 1.5vh;
+    margin: 1vh;
+}
+.two {
+    border-radius: 25px;
+    width: 40vw;
+    float: right;
+    height: 20vh;
+    background-color: white;
+    padding: 1vh;
+    margin: 1vh;
+}
+.three {
+    border-radius: 25px;
+    width: 62vw;
+    /* float: left; */
+    height: 20vh;
+    /* background-color: white; */
+    padding: 1vh 1vw;
+    margin: 1vh;
+}
+
+.four{
+    /* 
+    width: 34vw;
+    float: right;
+    height: auto;
+    padding: 1vh 1vw;
+    margin: 1vh;
+    
+    display: inline-block; */
+    border-radius: 10px;
+    background-color:  white;
+}
+
+.event-time {
+    font-size: 14px;
+    color: rgb(117, 117, 117);
+    font-weight: 400px;
+}
+
+.event-name {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.row.host-row {
+    /* width: 70%; */
+    margin-right: 0px;
+}
+
+.attend-btn {
+    /* display: inline; */
+    border: 2px solid black;
+    /* background-color: #db75c5; */
+    color: rgba(0, 0, 0, .2)
+    font-size: 18px;
+    border-radius: 5px;
+    font-weight: 500;
+    width: 50%;
+    height: 70%;
+    margin: auto;
+    padding-top: 5px;
+    text-align: center;
+}
+
+.attend-btn:hover {
+    border: 2px solid black;
+    /* border: 1px solid rgba(0, 0, 0, .03); */
+    transform: scale(1.1);
+    cursor: pointer;
+    transition-duration: 0.3s;
+    transition-property: transform;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, .03), -1px -1px 10px rgba(0, 0, 0, .03);
+}
+
+.host-name {
+    font-size: 16px;
+    font-weight: 500;
+    color: black;
+}
+
+.host-avatar-image-div {
+    margin-left: 10px; 
+}
+
+.host-avatar-image {
+    height: 45px;
+    width: 45px;
+    border-radius: 50px;
+    /* border: 1px solid black ; */
+    padding-right: 0px;
+    fit-content: cover; 
+}
+
+#ava {
+    /* width: 60vw;
+    height: 40vh; */
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+#map{
+    width: 100%;
+    height: 35vh;
+    background-color:black;
+}
+
+.comments-title {
+    margin-bottom: 20px;
+}
+
+.comment {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.comment-image {
+    padding-left: 5px;
+    padding-right: 0;
+}
+
+.comment-text {
+    margin-left: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 20px;
+    
+    /* border: solid black 1px; */
+    background: white;
+}
+
+.comment-text-input {
+    margin-left: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 20px;
+    /* border: solid black 1px; */
+    background: white;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, .1);
+    
+}
+
+#textInput {
+    border: none;
+    outline: none;
+    resize: none;
+    padding-top: 5px;
+    padding-bottom: 1px;
+}
+
+#textInput::-webkit-scrollbar {
+    background: transparent;
+}
+
+.comment-btn {
+    background: transparent;
+}
+
+.comment-time {
+    font-size: 12px;
+    color: rgb(117, 117, 117);
+    font-weight: 400px;
+    margin-top: 3px;
+    padding-left: 20px;
+}
+
+.avatar-image {
+    height: 45px;
+    width: 45px ;
+    border-radius: 40px;
+    /* border: 1px solid black ; */
+    fit-content: cover; 
+}
+
+.map-marker {
+    /* text-align: center; */
+    text-align: right; /* horizontal align */
+    display: table-cell; /*display as table cell to make possible vertical align */
+    vertical-align: middle;
+    font-size: 25px;
+   padding: 0px 0px 0px 0px;
+   margin-right: 5px;
+}
+
+.attendees {
+    margin-top: 50px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.attendee-wrap {
+    background: white;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, .5);
+    border-radius: 5px;
+    width: 100%;
+    height: 95%;
+    margin: auto;
+    margin-top: 20px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    text-align: center;
+}
+
+.attendee-name {
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 20px;  
+    color: black;
+}
+
+.attendee-avatar-image {
+    margin: auto;
+    width: 100%;
+    height: 50px;
+    width: 50px ;
+    border-radius: 40px;
+    /* border: 1px solid black ; */
+    fit-content: cover; 
+}
+
+i.fa-map-marker {
+    
+}
+
+img {
+    fit-content: cover; 
+}
+
+body {
+    background-color: rgba(0, 0, 0, .03);
+}
+
+.padding-0{
+    padding-right:0;
+    padding-left:0;
+}
+
+.comment-text {
+    /* border: 1px solid grey; */
+    border: 1px solid rgba(0, 0, 0, .1);
+}

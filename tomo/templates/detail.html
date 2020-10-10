@@ -1,0 +1,181 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+            integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/all.min.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/detail.css' %}" />
+        <title>{{ event.name }}</title>
+    </head>
+    <body class = "body">
+        <div class="head-bar">
+            {% include 'navbar.html' %}
+        </div> <!-- head-bar -->
+        <div class="top">   
+            <div class="event-time">{{ event.hosted_at | date:"l, j F Y" }}</div>
+            <div class="row">
+                <div class="col-3 event-name">
+                    {{ event.name }}
+                </div>
+                <div class="col-2 offset-6">
+                    {% if attended %}
+                        <div class="attend-btn" onclick="attend()">
+                            <i class="fa fa-check"> </i>Attended
+                        </div>
+                    {% elif hosted %}
+                        <div class="attend-btn" onclick="update()">
+                            Update
+                        </div>
+                    {% else %}
+                        <div class="attend-btn" onclick="attend()">
+                            Attend
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="row host-row">
+                <div class="col-1 padding-0">
+                    <div class="host-avatar-image-div">
+                        <img class="host-avatar-image" src="{{ event.host.avatar_image.url }}">
+                    </div>
+                </div>
+                <div class="col-3  padding-0">
+                        <div>Hosted by</div>
+                        <a class="host-name" href="{% url 'user_profile' event.host.username %}">{{ event.host.first_name }} {{ event.host.last_name }}</a>
+                </div> <!-- row -->
+            </div>
+        </div>
+        <div class="box">
+            <div class="row">
+                <div class="one col-7">
+                    <img id="ava" src="{{ event.cover_image.url }}" alt="Avatar">
+                    <!-- <h3 style="padding-left: 1.2vh;">Description</h3> -->
+                    {% if event.detail %}
+                        <div>{{ event.detail | linebreaksbr}}</div>
+                    {% else %}
+                        <div>For now, it has no description.</div>
+                    {% endif %}
+                    <br>
+                    <h3 class="comments-title" style="padding-left: 1.2vh;" >Comments</h3>
+                    <!-- Comment section -->
+                    {% if comments %}
+                        {% for comment in comments %}
+                        <!-- <div class="card mb-3 comment-card">
+                            <div class="card-hearder">
+                                <small>[{{ comment.date }}]</small>
+                                <div class="float-right">
+                                    <a onclick="like({{comment.id}});" class="btn btn-outline-dark btn-sm">
+                                        <i class="fas fa-thumbs-up"></i>
+                                        <span id="like{{comment.id}}">{{ comment.like }}</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                            {{ comment.content | linebreaksbr }}
+                            </div>
+                        </div> -->
+                            <div class="row comment">
+                                <div class="comment-image col-1">
+                                    <img class="avatar-image" src="{{ comment.user.avatar_image.url }}" alt="Avatar">
+                                </div>
+                                <div class="col-10">
+                                    <div class="comment-text">
+                                        <a href="{% url 'user_profile' comment.user.username %}">{{ comment.user.first_name }} {{ comment.user.last_name }}</a> {{ comment.content | linebreaksbr }}
+                                    </div>
+                                    <div class="comment-time">
+                                        {{ comment.date | date:"j/n/Y G:i"}}
+                                    </div>
+                                </div>
+                            </div> <!-- comment -->
+                        {% endfor %}
+                    {% else %}
+                    <!-- <p>No comment.</p> -->
+                    {% endif %}
+                    <br>
+                    <!-- Post a comment -->
+                    <form action="{% url 'detail' event.id %}" method="post">
+                    {% csrf_token %}
+                        <!-- <div class="form-group"> -->
+                            <!-- <label for="textInput">Text</label> -->
+                        <div class="row">
+                            <div class="comment-image col-1">
+                                <img class="avatar-image" src="{{ user.avatar_image.url }}" alt="Avatar">
+                            </div>
+                            <div class="col-10 comment-text-input row ">
+                                <textarea class="col-11" id="textInput" name="comment_text"  rows="1" ></textarea>
+                                <button type="submit" class="btn col-1 comment-btn"><i class="fas fa-comment"></i></button>
+                            </div>
+                        </div>
+                            
+                    </form>
+                    <div class="attendees">Attendees({{event.attendees.all.count}})</div>
+                    <div class="row">
+                        {% if event.attendees %}
+                            {% for attendee in event.attendees.all %}
+                                <div class="col-2">
+                                    <div class="attendee-wrap">
+                                        <img class="attendee-avatar-image" src="{{ attendee.avatar_image.url }}"><br>
+                                        <a class="attendee-name" href="{% url 'user_profile' attendee.username %}">
+                                            {% if not attendee.first_name %}
+                                                {{ attendee.username }}
+                                            {% else %}
+                                                {{ attendee.first_name }}<br>{{ attendee.last_name }}
+                                            {% endif %}
+                                        </a>
+                                    </div> <!-- attendee-wrap -->
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-3 offset-1">
+                    <div class="four">
+                        <div class="row">
+                            <div class="col-2 map-marker">
+                                <i class="fa fa-map-marker-alt"></i>
+                            </div>
+                            <div class="col-9">
+                                {{ event.address }}
+                            </div>   
+                        </div>
+                        <div id="map"></div>
+                        <div><br></div>
+                        <script>
+                        function initMap() {
+                            var uluru = { lat: {{ event.lat }}, lng: {{ event.lng }} };
+                            var map = new google.maps.Map(document.getElementById('map'), {zoom: 15, center: uluru});
+                            var marker = new google.maps.Marker({position: uluru, map: map}); 
+                        }
+                        </script>
+                        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQmcTCoxvxXpPHWwYQJG04bLkmtjbySjU&callback=initMap" async defer></script>
+                    </div> 
+                </div> <!-- four -->
+                <!-- <div class="three">
+                    <h2>Attendents({{event.attendees.all.count}})</h2>
+                </div> -->
+            </div>
+        </div>
+        <script src="{% static 'js/autosize/dist/autosize.js' %}"></script>
+        <script>
+            // for text area to shrink and expand
+            autosize($("#textInput"));
+            function attend() {
+                var url = `{% url 'attend' event.id %}`;
+                $('.attend-btn').load(url, function(data) {
+                    console.log(data);
+                });
+            }
+            function update() {
+                window.location.href = "{% url 'update' event.id %}";
+            }
+            
+        </script>
+    </body>
+</html>

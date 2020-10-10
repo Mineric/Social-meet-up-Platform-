@@ -1,0 +1,25 @@
+.search-results-items {
+    position: absolute;
+    /* border-top: solid 1px #bbbbbb; */
+    /* border-left: 1px solid #cccccc;
+    border-right: 1px solid #cccccc; */
+    width: 100%;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0px 10px 18px #888888;
+}
+
+.search-results-item {
+    background-color: white;
+    padding: 5px 5px 5px 2px;
+    color:  rgba(0, 0, 0, .6);
+    /* width: 100%; */
+}
+
+.search-results-item:hover {
+    background: #C2DFFF;
+    /* color: white; */
+    color: rgba(0, 0, 0, 1);
+    cursor: pointer;
+}

@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Update {{event.name}}</title>
+    <meta charset="utf-8">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="{% static 'js/addtags.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/addtags.css' %}">
+    <link rel="stylesheet" href="{% static 'css/update.css' %}">
+</head>
+
+<body>
+    <div class="head-bar">
+        {% include 'navbar.html' %}
+    </div>
+    <h1 style="text-align: center; margin-top: 150px;">
+        <i class="fa fa-frown-o"></i>
+        You are not allowed to update this event.
+    </h1>
+
+</body>

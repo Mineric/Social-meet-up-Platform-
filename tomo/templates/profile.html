@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+            integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/all.min.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}" />
+        <title>{{ user.username }}</title>
+    </head>
+    <body>
+        <div class="head-bar">
+            {% include 'navbar.html' %}
+        </div> <!-- head-bar -->
+
+        <div class="profile-body">
+            <div class="row">
+                <div class="col-6">
+                    <img class="avatar-image" src="{{ user.avatar_image.url }}" alt="Avatar image">
+                </div>
+                <div class="col-6">
+                    <div class="user-name">
+                        {{ user.first_name }} {{user.last_name}}
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="user-small-info">Age:</div>
+                            <div>{{ user.age }}</div>
+                        </div>
+                        <div class="col-6 offset-1">
+                            <div class="user-small-info">Contact:</div>
+                            {% if user.contact %}
+                                <div>{{ user.contact }}</div>
+                            {% else %}
+                                <div><i>Empty</i></div>
+                            {% endif %}
+                        </div>
+                        <br>
+                        <div class="col-12 user-small-info">About:</div>
+                            {% if user.description %}
+                                <div class="col-12">{{ user.description | linebreaksbr }}</div>
+                            {% else %}
+                                <div class="col-12">Nothing yet.</div>    
+                            {% endif %}
+                </div>
+            </div>
+            </div>
+            <div class="row">
+                <div class="col-12 event-intro">Event hosted ({{ events_host.count }})</div>
+                {% if events_host %}
+                    {% for event in events_host %}
+                        <div class="col-6 event-wrap-wrap">
+                            <div class="row event-wrap">
+                                <div class="col-4">
+                                    <img class="event-image" src="{{ event.cover_image.url }}">
+                                </div>
+                                <div class="col-8">
+                                    <div class="event-name">{{ event.name }}</div>
+                                    <div class="go-update-btn row">
+                                        {% if user.id == event.host.id %}
+                                            <span class="col-5 go-btn" onclick="goToEvent(`{% url 'detail' event.id %}`)">Go</span>
+                                            <span class="col-7 update-btn" onclick="goToEvent(`{% url 'update' event.id %}`)">Update</span>
+                                        {% else %}
+                                            <span class="col-12 go-btn" onclick="goToEvent(`{% url 'detail' event.id %}`)">Go</span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div> <!-- row -->
+            <div class="row">
+                <div class="col-12 event-intro">Event attend: ({{ events_attend.count }})</div>
+                {% if events_attend %}
+                    {% for event in events_attend %}
+                    <div class="col-6 event-wrap-wrap">
+                        <div class="row event-wrap">
+                            <div class="col-4">
+                                <img class="event-image" src="{{ event.cover_image.url }}">
+                            </div>
+                            <div class="col-8">
+                                <div class="event-name">{{ event.name }}</div>
+                                <div class="go-update-btn row">
+                                    {% if main_user.id == event.host.id %}
+                                        <span class="col-5 go-btn" onclick="goToEvent(`{% url 'detail' event.id %}`)">Go</span>
+                                        <span class="col-7 update-btn" onclick="goToEvent(`{% url 'update' event.id %}`)">Update</span>
+                                    {% else %}
+                                        <span class="col-12 go-btn" onclick="goToEvent(`{% url 'detail' event.id %}`)">Go</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            </div> <!-- row -->
+        </div> <!-- profile-body -->
+        <script>
+            // $(document).ready(() => {
+            //     $('.event-wrap').each(() => {
+            //         var url = "{/% url 'detail' event.id %}";
+            //         goToEvent(url);
+            //     })
+            // })
+            function goToEvent(address) {
+                window.location.href = address
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,26 @@
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static 'css/search_results.css' %}">
+
+<div class="search-results-items">
+{% if results %}
+    {% for result in results %}
+        {% if result.name %}
+            <div class="search-results-item" onclick="goto('{% url 'detail' result.id %}')">
+                <!-- if it is event -->
+                {{ result.name }}
+            </div>
+        {% elif result.username %}
+            <div class="search-results-item" onclick="goto('{% url 'user_profile' result.username %}')">
+                <!-- if it is event -->
+                {{ result.username }}
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+</div> <!-- search-results-items -->
+
+<script>
+    function goto(url) {
+        window.location.href = url;
+    }        
+</script>
