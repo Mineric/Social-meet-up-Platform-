@@ -48,7 +48,7 @@ def deleteCookieUserId(request):
 
 # find latitude and longtitude using address
 def findGeocoding(address):
-    API_KEY_GOOGLE = 'AIzaSyCvd_gwQNWo-6oFryV0SML_9xXQFhg7myo'
+    API_KEY_GOOGLE = 'AIzaSyCQmcTCoxvxXpPHWwYQJG04bLkmtjbySjU'
     url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&key=' + API_KEY_GOOGLE
     request = requests.get(url)
     if request.status_code == 200:

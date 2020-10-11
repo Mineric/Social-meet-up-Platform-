@@ -322,28 +322,28 @@ def create(request):
         # tags
         tags_id = request.POST.getlist('tags')
         # create event
-        # if name:
-        #     if address:
-        #         location = findGeocoding(address)
-        #         if location['lat'] != -1 and location['lng'] != -1:
-        #             lat = location['lat']
-        #             lng = location['lng']
-        #         event = Event.objects.create(name=name, detail=s_detail, address=address, lat=lat, lng=lng, host=host)
-        #     else:
-        #         event = Event.objects.create(name=name, detail=s_detail, host=host)
-        #     if hosted_at:
-        #         event.hosted_at = makeAwareDatetime(parse_datetime(str(hosted_at)))
-        #     # forms
-        #     form = UploadEventImageForm(request.POST, request.FILES, instance=event)
-        #     if form.is_valid():
-        #         form.save()
-        #     for tag_id in tags_id:
-        #         tag = Tag.objects.get(pk=tag_id)
-        #         event.tags.add(tag)
-        #     event.save()
-        #     return redirect(detail, event.id)
-        # else:
-        #     return redirect(create)
+        if name:
+            if address:
+                location = findGeocoding(address)
+                if location['lat'] != -1 and location['lng'] != -1:
+                    lat = location['lat']
+                    lng = location['lng']
+                event = Event.objects.create(name=name, detail=s_detail, address=address, lat=lat, lng=lng, host=host)
+            else:
+                event = Event.objects.create(name=name, detail=s_detail, host=host)
+            if hosted_at:
+                event.hosted_at = makeAwareDatetime(parse_datetime(str(hosted_at)))
+            # forms
+            form = UploadEventImageForm(request.POST, request.FILES, instance=event)
+            if form.is_valid():
+                form.save()
+            for tag_id in tags_id:
+                tag = Tag.objects.get(pk=tag_id)
+                event.tags.add(tag)
+            event.save()
+            return redirect(detail, event.id)
+        else:
+            return redirect(create)
     
     form = UploadEventImageForm()
     tags = Tag.objects.all()
