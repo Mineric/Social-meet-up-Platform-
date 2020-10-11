@@ -13,4 +13,3 @@ In this project, I could  able to learn Database handling and back-end web progr
 Django」を使用し、「MVCモデル」に基づいて開発したサイトです。
 特に、DjangoやデータベースやWebプログラミングなどについて学ぶことができました。
 
-(Python, JS, HTML, CSS, Bootstrap, SQLite, Django)
