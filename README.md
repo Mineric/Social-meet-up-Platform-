@@ -1,6 +1,6 @@
 # Social-meet-up-Platform-
 
-This project is creating a social media platform whhich users can create and join social events. 
+This project is creating a social media platform where users can create and join social events. 
 The users are able to join social event and meet with people who are sharing the same interest with them or host one of thier own. 
 Mainly, Django framework was used in this project and architectural pattern was based on MVC model. 
 For learning purpose, database, migration and back-end web programming with Django Framework were mainly focused in this project.
